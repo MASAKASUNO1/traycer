@@ -1,19 +1,31 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   images: {
     domains: ["firebasestorage.googleapis.com"],
   },
-  output: "export",
-  trailingSlash: true,
   distDir: "dist",
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
+  },
+  webpack: (config, { isServer }) => {
+    // undiciのプライベートフィールド構文エラーを解決
+    config.module.rules.push({
+      test: /\.m?js$/,
+      type: "javascript/auto",
+      resolve: {
+        fullySpecified: false,
+      },
+    });
+
+    // undiciモジュールを外部化（サーバーサイドのみ）
+    if (isServer) {
+      config.externals.push("undici");
+    }
+
+    return config;
   },
 };
 
