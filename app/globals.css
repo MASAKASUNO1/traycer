@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom styles for programming learning game */
+.code-editor {
+  @apply font-mono text-sm bg-gray-900 text-green-400 p-4 rounded-lg border border-gray-700;
+}
+
+.problem-card {
+  @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700;
+}
+
+.progress-bar {
+  @apply w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700;
+}
+
+.progress-fill {
+  @apply bg-primary-600 h-2.5 rounded-full transition-all duration-300;
+}
+
+.game-button {
+  @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.game-button-primary {
+  @apply game-button bg-primary-600 hover:bg-primary-700 text-white focus:ring-primary-500;
+}
+
+.game-button-secondary {
+  @apply game-button bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 focus:ring-gray-500;
+}
+
+.game-button-success {
+  @apply game-button bg-success-600 hover:bg-success-700 text-white focus:ring-success-500;
+}
+
+.game-button-danger {
+  @apply game-button bg-error-600 hover:bg-error-700 text-white focus:ring-error-500;
+}
